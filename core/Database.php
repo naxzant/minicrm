@@ -9,14 +9,14 @@ class Database {
         if (!self::$instance) {
             $config = require __DIR__ . '/../config/database.php';
 
-            $instance = new PDO(
+            self::$instance = new PDO(
                 "mysql:host={$config['host']};dbname={$config['dbname']}",
                 $config['username'],
                 $config['password']
             );
-            $instance->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            self::$instance->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         }
-        return $instance;
+        return self::$instance;
     }
 }
 
