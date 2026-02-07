@@ -5,6 +5,8 @@ function e($msg) { echo $msg . PHP_EOL; }
 
 $username = $argv[1] ?? 'admin';
 $password = $argv[2] ?? 'admin@123';
+$email = 'admin@minicrm.com';
+$role = 'admin';
 $generated = false;
 if (!$password) {
     try {
@@ -30,7 +32,7 @@ try {
 
     $hash = password_hash($password, PASSWORD_BCRYPT);
     $insert = $db->prepare('INSERT INTO admin_user (username, password, email, role) VALUES (?, ?, ?, ?)');
-    $insert->execute([$username, $hash, null, 'admin']);
+    $insert->execute([$username, $hash, $email, $role]);
 
     e("Inserted admin user: {$username}");
     if ($generated) {
