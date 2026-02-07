@@ -25,34 +25,52 @@ if (empty($_SESSION['admin_authenticated'])) {
     exit;
 }
 
-switch ($controller) {
-    case 'dashboard':
-        require __DIR__ . '/../views/admin/dashboard.php';
-        break;
-    case 'product':
+if ($controller === 'dashboard') {
+
+    require __DIR__ . '/../views/admin/dashboard.php';
+
+} elseif (in_array($controller, ['product', 'event'])) {
+
+    if ($controller === 'product') {
         require __DIR__ . '/../controllers/admin/ProductController.php';
         $c = new ProductController();
+    }
 
-        if (in_array($action, ['edit','update','delete'])) {
-            $id = isset($_REQUEST['id']) ? intval($_REQUEST['id']) : 0;
-            if ($action === 'edit') $c->edit($id);
-            elseif ($action === 'update') $c->update($id);
-            elseif ($action === 'delete') $c->delete($id);
-            break;
+    if ($controller === 'event') {
+        require __DIR__ . '/../controllers/admin/EventController.php';
+        $c = new EventController();
+    }
+
+    if (in_array($action, ['edit', 'update', 'delete'])) {
+
+        $id = isset($_REQUEST['id']) ? intval($_REQUEST['id']) : 0;
+
+        if ($action === 'edit') {
+            $c->edit($id);
+        } elseif ($action === 'update') {
+            $c->update($id);
+        } elseif ($action === 'delete') {
+            $c->delete($id);
         }
 
-        if ($action === 'create') {
-            $c->create();
-        } elseif ($action === 'store') {
-            $c->store();
-        } else {
-            $c->index();
-        }
+    } elseif ($action === 'create') {
 
-        break;
-    default:
-        header('HTTP/1.0 404 Not Found');
-        echo 'Not Found';
+        $c->create();
+
+    } elseif ($action === 'store') {
+
+        $c->store();
+
+    } else {
+
+        $c->index();
+    }
+
+} else {
+
+    header('HTTP/1.0 404 Not Found');
+    echo 'Not Found';
 }
+
 
 ?>
