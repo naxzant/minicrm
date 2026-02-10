@@ -29,7 +29,7 @@ if ($controller === 'dashboard') {
 
     require __DIR__ . '/../views/admin/dashboard.php';
 
-} elseif (in_array($controller, ['product', 'event'])) {
+} elseif (in_array($controller, ['product', 'event', 'inventory'])) {
 
     if ($controller === 'product') {
         require __DIR__ . '/../controllers/admin/ProductController.php';
@@ -39,6 +39,11 @@ if ($controller === 'dashboard') {
     if ($controller === 'event') {
         require __DIR__ . '/../controllers/admin/EventController.php';
         $c = new EventController();
+    }
+
+    if ($controller === 'inventory') {
+        require __DIR__ . '/../controllers/admin/InventoryController.php';
+        $c = new InventoryController();
     }
 
     if (in_array($action, ['edit', 'update', 'delete'])) {

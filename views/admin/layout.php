@@ -32,6 +32,7 @@ if (session_status() === PHP_SESSION_NONE) session_start();
     <aside class="admin-aside">
       <a href="admin.php">Dashboard</a>
       <a href="admin.php?controller=product">Catalog</a>
+      <a href="admin.php?controller=inventory">Inventory</a>
     </aside>
     <main class="admin-content">
       <?php echo $content ?? ''; ?>
