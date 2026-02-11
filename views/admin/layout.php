@@ -8,7 +8,7 @@ if (session_status() === PHP_SESSION_NONE) session_start();
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title><?php echo htmlspecialchars($title ?? 'Admin'); ?></title>
-  <link href="/assets/css/site.css" rel="stylesheet">
+  <link href="/minicrm/public/assets/css/site.css" rel="stylesheet">
   <style>
     .admin-header{background:#222;color:#fff;padding:10px}
     .admin-layout{display:flex}

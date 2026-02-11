@@ -15,3 +15,57 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial;backgr
 
 
 /* Event module css start   */
+
+/* Admin layout css start   */
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #f4f6f9;
+}
+
+/* Header */
+.admin-header {
+  background: #1e293b;
+  color: #fff;
+  padding: 15px 20px;
+  font-size: 18px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Layout */
+.admin-layout {
+  display: flex;
+  min-height: 100vh;
+}
+
+/* Sidebar */
+.admin-aside {
+  width: 220px;
+  background: #ffffff;
+  border-right: 1px solid #ddd;
+  padding: 20px;
+}
+
+.admin-aside a {
+  display: block;
+  padding: 10px;
+  margin-bottom: 8px;
+  text-decoration: none;
+  color: #333;
+  border-radius: 5px;
+  transition: 0.2s ease;
+}
+
+.admin-aside a:hover {
+  background: #e2e8f0;
+}
+
+/* Content */
+.admin-content {
+  flex: 1;
+  padding: 25px;
+}
+
+/* Admin layout css end   */

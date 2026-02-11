@@ -44,8 +44,29 @@ class InventoryController {
             'quantity' => isset($_POST['quantity']) ? intval($_POST['quantity']) : 0,
         ];
 
+        // Validate name
         if ($data['name'] === '') {
-            $_SESSION['error'] = 'Name is required';
+            $_SESSION['error'] = 'Name is required.';
+            header('Location: admin.php?controller=inventory&action=create');
+            exit;
+        }
+
+        if (!preg_match('/^[A-Za-z ]+$/', $data['name'])) {
+            $_SESSION['error'] = 'Invalid name. Only letters allowed.';
+            header('Location: admin.php?controller=inventory&action=create');
+            exit;
+        }
+
+        // Validate price
+        if ($data['price'] === '' || !is_numeric($data['price']) || $data['price'] < 0) {
+            $_SESSION['error'] = 'Invalid price. Must be a positive number.';
+            header('Location: admin.php?controller=inventory&action=create');
+            exit;
+        }
+
+        // Validate quantity
+        if ($data['quantity'] === '' || !is_numeric($data['quantity']) || $data['quantity'] < 0) {
+            $_SESSION['error'] = 'Invalid quantity. Must be a positive number.';
             header('Location: admin.php?controller=inventory&action=create');
             exit;
         }
@@ -81,6 +102,35 @@ class InventoryController {
             header('Location: admin.php?controller=inventory&action=edit&id=' . intval($id));
             exit;
         }
+
+        // Validate name
+        if ($data['name'] === '') {
+            $_SESSION['error'] = 'Name is required.';
+            header('Location: admin.php?controller=inventory&action=create');
+            exit;
+        }
+
+        if (!preg_match('/^[A-Za-z ]+$/', $data['name'])) {
+            $_SESSION['error'] = 'Invalid name. Only letters allowed.';
+            header('Location: admin.php?controller=inventory&action=create');
+            exit;
+        }
+
+        // Validate price
+        if ($data['price'] === '' || !is_numeric($data['price']) || $data['price'] < 0) {
+            $_SESSION['error'] = 'Invalid price. Must be a positive number.';
+            header('Location: admin.php?controller=inventory&action=create');
+            exit;
+        }
+
+        // Validate quantity
+        if ($data['quantity'] === '' || !is_numeric($data['quantity']) || $data['quantity'] < 0) {
+            $_SESSION['error'] = 'Invalid quantity. Must be a positive number.';
+            header('Location: admin.php?controller=inventory&action=create');
+            exit;
+        }
+
+
 
         $this->inventory->update($id, $data);
         header('Location: admin.php?controller=inventory');
